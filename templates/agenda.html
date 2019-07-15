@@ -7,7 +7,11 @@
     </a>
     <ul>
         {% for evento in eventos %}
-            <li>{{evento}} - {{ evento.get_data_evento }}</li>
+            <li>
+                {{evento}} - {{ evento.get_data_evento }}
+                <a href="evento/?id={{ evento.id }}">Editar</a>
+                <a href="evento/delete/{{ evento.id }}/">Deletar</a>
+            </li>
         {% endfor %}
     </ul>
 {% endblock %}
