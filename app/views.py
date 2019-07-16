@@ -4,6 +4,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from datetime import datetime,timedelta
+from django.http.response import Http404
 
 # Create your views here.
 @login_required(login_url='/login/')
@@ -62,9 +63,14 @@ def submit_evento(request):
 @login_required(login_url='/login/')
 def delete_evento(request, id):
     usuario = request.user
-    evento = Evento.objects.get(id=id)
+    try:
+        evento = Evento.objects.get(id=id)
+    except Exception:
+        raise Http404()
     if evento.usuario == usuario:
         evento.delete()
+    else:
+        raise Http404()
     return redirect('/')
 
 def login_user(request):
