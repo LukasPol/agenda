@@ -2,15 +2,20 @@
 
 {% block content %}
     <h2>Agendamentos</h2>
+    {% for message in messages %}
+        <p><Strong>{{message}}</Strong></p>
+    {% endfor %}
     <a href="evento/">
         <button type="button">Novo Evento</button>
     </a>
     <ul>
         {% for evento in eventos %}
             <li>
-                {{evento}} - {{ evento.get_data_evento }}
-                <a href="evento/?id={{ evento.id }}">Editar</a>
-                <a href="evento/delete/{{ evento.id }}/">Deletar</a>
+                <div {% if evento.get_evento_atrasado %} style = "color:red" {% endif %}>
+                    {{evento}} - {{ evento.get_data_evento }}
+                    <a href="evento/?id={{ evento.id }}">Editar</a>
+                    <a href="evento/delete/{{ evento.id }}/">Deletar</a>
+                </div>
             </li>
         {% endfor %}
     </ul>
