@@ -1,13 +1,13 @@
 """agenda URL Configuration
 
-The `urlpatterns` list routes URLs to views. For more information please see:
+The `urlpatterns` list routes URLs to . For more information please see:
     https://docs.djangoproject.com/en/2.2/topics/http/urls/
 Examples:
-Function views
-    1. Add an import:  from my_app import views
-    2. Add a URL to urlpatterns:  path('', views.home, name='home')
-Class-based views
-    1. Add an import:  from other_app.views import Home
+Function 
+    1. Add an import:  from my_app import 
+    2. Add a URL to urlpatterns:  path('', .home, name='home')
+Class-based 
+    1. Add an import:  from other_app. import Home
     2. Add a URL to urlpatterns:  path('', Home.as_view(), name='home')
 Including another URLconf
     1. Import the include() function: from django.urls import include, path
@@ -15,17 +15,20 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from app import views
+from app.views import *
+from account.views import *
 from django.views.generic import RedirectView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('agenda/', views.listaEvento),
+    path('agenda/', listaEvento),
     path('', RedirectView.as_view(url='/agenda/')),
-    path('agenda/evento/', views.evento),
-    path('agenda/evento/submit', views.submit_evento),
-    path('agenda/evento/delete/<int:id>/', views.delete_evento),
-    path('login/', views.login_user),
-    path('login/submit', views.submit_login),
-    path('logout/', views.logout_user)   
+    path('agenda/evento/', evento),
+    path('agenda/evento/submit', submit_evento),
+    path('agenda/evento/delete/<int:id>/', delete_evento),
+    path('login/', login_user),
+    path('login/submit', submit_login),
+    path('logout/', logout_user),
+    path('register/', register ),
+    path('register/submit', submit_register )
 ]

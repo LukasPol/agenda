@@ -8,16 +8,15 @@
 </head>
 <body>
     <h1>Login</h1>
-
     {% for message in messages %}
         <p><Strong>Error:</Strong> {{message}}</p>
     {% endfor %}
     <form action="submit" method="POST">{% csrf_token %}
         <input type="text" name="username" placeholder="Usuário" autofocus required> <br>
         <input type="password" name="password" placeholder="Senha" required> <br>
-        <button type="submit">Entrar</button>
+        <input type="email" name="email" placeholder="Email" required> <br>
+        <button type="submit">Cadastrar</button>
     </form>
-    <a href="/register">Cadastrar</a>
 
 </body>
 </html>
