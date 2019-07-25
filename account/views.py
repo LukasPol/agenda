@@ -7,7 +7,7 @@ from django.contrib.auth import authenticate, login, logout
 
 # Create your views here.
 def login_user(request):
-    return render(request, 'login.html')
+    return render(request, 'account/login.html')
 
 @require_POST
 def submit_login(request):
@@ -25,14 +25,11 @@ def logout_user(request):
     return redirect('/')
 
 def register(request):
-    return render(request, 'register.html')
+    return render(request, 'account/register.html')
 
 @require_POST
 def submit_register(request):
     try:
-        # username = request.POST.get('username')
-        # password = request.POST.get('password')
-        # print(request.POST.get('email'))
         usuario_name = User.objects.get(username=request.POST.get('username'))
         usuario_email = User.objects.get(email=request.POST.get('email'))
 

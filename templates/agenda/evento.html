@@ -1,0 +1,53 @@
+{% extends "../page.html" %}
+
+{% block content %}
+
+<div class="row">
+    <div class="col-lg-12 text-center">
+        <h3>Evento</h3>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-lg-12 offset-md-2">
+        {% if messages %}
+            <div class="alert alert-light" role="alert">
+                {% for message in messages %}
+                    <p><Stdong>{{message}}</Stdong></p>
+                {% endfor %}
+            </div>
+        {% endif %}
+
+        <form action="submit" method="POST">{% csrf_token %}
+            <input type="number" value="{{ evento.id }}" name="id" hidden>
+            <table class="table-light">
+                <tr>
+                    <td><label>Título:</label></td>
+                    <td><input type="text" name="titulo" placeholder="Título" size='26' value="{{ evento.titulo }}" required autofocus></td>
+                </tr>
+                <tr>
+                    <td><label>Data e Hora:&nbsp;</label></td>
+                    <td><input type="datetime-local" name="data_evento" value="{{  evento.get_data_evento_input }}" required></td>
+                </tr>
+                <tr>
+                    <td class="align-bottom"><label>Descrição:</label></td>
+                    <td><textarea name="descricao" placeholder="Descrição" rows="5" cols="28" >{{ evento.descricao }}</textarea></td>
+                </tr>
+                
+                 <!-- <br>
+                
+                 <br>
+                
+                 <br> -->
+            </table>
+            <div class="buttons offset-md-1">
+                <button class="btn btn-success" type="submit">Salvar</button> 
+                <button class="btn btn-warning" type="reset">Apagar</button> 
+                <a href="/">
+                    <button class="btn btn-secondary" type="button">Cancelar</button>
+                </a>
+            </div>    
+        </form>
+    </div>
+</div>
+{% endblock %}

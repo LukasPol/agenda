@@ -16,7 +16,7 @@ def listaEvento(request):
     dados = {}
     dados['eventos'] =  eventos
     dados['usuario'] = usuario
-    return render(request, 'agenda.html', dados)
+    return render(request, 'agenda/agenda.html', dados)
 
 @login_required(login_url='/login/')
 def evento(request):
@@ -25,7 +25,7 @@ def evento(request):
     if idEvento:
         dados['evento'] = Evento.objects.get(id=idEvento)
     dados['usuario'] = request.user
-    return render(request, 'evento.html', dados)
+    return render(request, 'agenda/evento.html', dados)
 
 def verificaData(data_evento):
     dataAtual = datetime.now()
@@ -73,6 +73,7 @@ def delete_evento(request, id):
         raise Http404()
     if evento.usuario == usuario:
         evento.delete()
+        messages.success(request, 'Deletado com sucesso')
     else:
         raise Http404()
     return redirect('/')
